@@ -1,0 +1,7 @@
+# uniqueidentifier extension
+comment = 'Legacy uniqueidentifier data type'
+default_version = '1.0'
+module_pathname = '$libdir/uniqueidentifier'
+# non-relocatable because uniqueidentifier--unpackaged--1.0.sql needs to use @extschema@
+relocatable = false
+

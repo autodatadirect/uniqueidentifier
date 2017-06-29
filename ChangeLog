@@ -1,0 +1,23 @@
+2003-12-02  Dmitry G. Mastrukov <dmitry@taurussoft.org>
+
+	* uniqueidentifier.sql.in: Set uniqueidentifier_ops_hash to be default
+	operator class for hash method. Renamed uniqueidentifier_ops to 
+	uniqueidentifier_ops_btree.
+
+2003-12-01  Dmitry G. Mastrukov <dmitry@taurussoft.org>
+
+	* uniqueidentifier.c: (uniqueidentifier_from_text):
+	* uniqueidentifier.sql.in: Added support for creating uniqueidentifier
+	from text and cast from text to uniqueidentifier. Thanks to David
+	Bradford <zerobearing2@jbmsoftware.net>.
+
+2003-11-28  Dmitry G. Mastrukov <dmitry@taurussoft.org>
+
+	* uniqueidentifier.c: (uniqueidentifier_hash):
+	* uniqueidentifier.sql.in: Added support for hash operator class. It
+	fixes problems with PostgreSQL 7.4, where hash joins are used in more
+	conditions.
+
+2011-11-12  Auto Data Direct, Inc. https://www.add123.com
+
+	Updated for use with PostgreSQL 9.1 and extensions.

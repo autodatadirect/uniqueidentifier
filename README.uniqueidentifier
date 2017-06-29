@@ -1,0 +1,65 @@
+Uniqueidentifier data type for postgresql.
+Copyright (C) 2001-2003, Dmitry G. Mastrukov <dmitry@taurussoft.org>
+Portion Copyright (C) 1996, 1997 Theodore Ts'o
+Portion Copyright (C) 2002 Hussein Patni
+Portion Copyright (C) 2003 David Bradford
+
+This software is distributed under the GNU Lesser General Public License
+either version 2, or (at your option) any later version.
+
+
+This data type is a 16-byte uniqueidentifier widely used to unique identify 
+entities across Universe. This implementation depends on libuuid from 
+e2fsprogs package (http://e2fsprogs.sourceforge.net) by Theodore Ts'o. I don't
+know is it possible to build e2fsprogs not on Linux, but seems libuuid itself 
+is fairly portable. So it may be possible to cut libuuid from e2fsprogs and
+compile it alone. Seems Theodore has some plans to split linuuid from 
+e2fsprogs.
+
+You should place this package in "contrib" directory of postgresql. To build
+and install package you need to enter
+
+    make
+    make install (may be as superuser)
+    
+Next you should go to share/contrib directory of your postgresql installation
+and enter
+
+    psql your_database -f uniqueidentifier.sql
+    
+Type will be registered in your database (if you install new type in temlate1
+database it will be available in every newly created database).
+
+Now you can use uniqueidentifier data type in column definitions and indexes.
+
+This package provides function newid(). This function generates new
+uniqueidentifier and may be used in DEFAULT constraints or in functions.
+
+Example:
+
+CREATE TABLE test (
+    id uniqueidentifier PRIMARY KEY DEFAULT newid()
+};
+
+INSERT INTO TABLE test VALUES (newid());    
+
+Hussein Patni <hussein.patni@cosbit.com> contibuted function 
+text(uniqueidentifier) to convert uniqueidentifier to text datatype.
+There exists implicit cast from uniqueidentifier to text.
+
+Example:
+
+SELECT CAST(id AS text) from test;
+SELECT text(id) from test;
+SELECT 'test/' || id from test;
+
+David Bradford <zerobearing2@jmbsoftware.net> contibuted function 
+newid(uniqueidentifier) to create uniqueidentifier from text.
+There exists implicit cast from text to uniqueidentifier.
+
+Updated for use with PostgreSQL 9.1 and extensions by Auto Data Direct, Inc.
+
+Enjoy!
+
+Dmitry G. Mastrukov
+dmitry@taurussoft.org
