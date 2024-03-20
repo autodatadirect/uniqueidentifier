@@ -1,7 +1,7 @@
 /*
  * PostgreSQL type definitions for uniqueidentifiers.
  *
- * $Id: uniqueidentifier.c,v 1.7 2003/12/01 20:22:35 dimagog Exp $
+ * $Id: uniqueidentifier.c,v 1.7.1 2024/03/20 14:33:35 cgamache Exp $
  *
  * Copyright (C) 2001-2003 Dmitry G. Mastrukov.
  * Code for _uid_compare is based on libuuid 
@@ -9,6 +9,7 @@
  *
  * Code for uniqueidentifier_text Copyright (C) 2002 Hussein Patni
  * Code for uniqueidentifier_from_text Copyright (C) 2003 David Bradford
+ * Updates by Auto Data Direct
  *
  * %Begin-Header%
  * This file may be redistributed under the terms of the GNU 
@@ -20,6 +21,7 @@
 #include <string.h>
 #include <uuid/uuid.h>
 #include "postgres.h"
+#include "varatt.h"
 #include "libpq/pqformat.h"
 #include "fmgr.h"
 #include "access/hash.h"
